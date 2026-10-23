@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AR Basketball Shooter</title>
+  <meta name="description" content="An Augmented Reality basketball game for Android made with Unity 6, AR Foundation and ARCore. Play the virtual-court version in your browser.">
+  <meta property="og:title" content="AR Basketball Shooter">
+  <meta property="og:description" content="Place a virtual hoop in your room and flick to shoot. Unity 6 + AR Foundation + ARCore. Play the browser version now.">
+  <meta property="og:image" content="https://shijin286.github.io/ar-basketball-shooter/images/court_05_after_first_shot.jpg">
+  <link rel="icon" href="images/icon.png">
+  <style>
+    :root {
+      --bg: #0a0e1f; --panel: #131a33; --line: #26304f; --text: #eef1fa; --muted: #a9b1cc;
+      --orange: #ff8c1f; --orange-dark: #e2700a; --blue: #2f6fe0;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6;
+           font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    a { color: var(--orange); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+    header.hero { padding: 56px 0 40px; text-align: center;
+                  background: radial-gradient(ellipse at top, #1d2a5c 0%, var(--bg) 70%); }
+    .hero img.icon { width: 88px; height: 88px; border-radius: 20px; box-shadow: 0 8px 30px rgba(255, 140, 31, .25); }
+    .hero h1 { margin: 16px 0 8px; font-size: clamp(32px, 6vw, 56px); line-height: 1.1; color: var(--orange); }
+    .hero p.tag { margin: 0 auto; max-width: 640px; font-size: clamp(16px, 2.4vw, 20px); color: var(--muted); }
+    .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px;
+           font-weight: 600; text-decoration: none; color: #fff; background: var(--panel); border: 1px solid var(--line); }
+    .btn:hover { border-color: var(--orange); }
+    .btn.primary { background: var(--orange); border-color: var(--orange); color: #1a1000; }
+    .btn.primary:hover { background: var(--orange-dark); }
+    .note { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+    section { padding: 40px 0; border-top: 1px solid var(--line); }
+    h2 { margin: 0 0 20px; font-size: 26px; }
+    .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .shots figure { margin: 0; }
+    .shots img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); }
+    .shots figcaption { margin-top: 6px; font-size: 13px; color: var(--muted); text-align: center; }
+    .court { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .court img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+    .card h3 { margin: 0 0 6px; font-size: 17px; color: var(--orange); }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .play { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .play ol { margin: 0; padding-left: 20px; color: var(--muted); }
+    .play li { margin-bottom: 6px; }
+    kbd { padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line); background: #0d1328; font-size: 13px; color: var(--text); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { width: 34%; color: var(--muted); font-weight: 600; }
+
+    footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; text-align: center; }
+
+    @media (max-width: 860px) {
+      .shots { grid-template-columns: repeat(2, 1fr); }
+      .cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .cards, .play, .court { grid-template-columns: 1fr; }
+      th { width: 40%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <img class="icon" src="images/icon.png" alt="">
+      <h1>AR Basketball Shooter</h1>
+      <p class="tag">Scan your floor, place a virtual hoop in your room and flick the screen to shoot.
+        An Augmented Reality game for Android made with Unity&nbsp;6, AR&nbsp;Foundation and ARCore.</p>
+      <div class="buttons">
+        <a class="btn primary" href="play/">&#9654; Play in your browser</a>
+        <a class="btn" href="https://github.com/shijin286/ar-basketball-shooter/releases/latest/download/ARBasketballShooter_v1.0.apk">&#128241; Android AR app (APK)</a>
+        <a class="btn" href="https://github.com/shijin286/ar-basketball-shooter/releases/latest/download/ARBasketballShooter-Windows.zip">&#128187; Windows app</a>
+        <a class="btn" href="https://github.com/shijin286/ar-basketball-shooter">&lt;/&gt; Source code</a>
+      </div>
+      <p class="note">The browser and Windows versions use a virtual court, because only phones have ARCore.
+        The real AR needs an <a href="https://developers.google.com/ar/devices">ARCore-supported Android phone</a>.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>On the phone (AR)</h2>
+      <div class="shots">
+        <figure><img src="images/ar_03_hoop_placed.jpg" alt="The hoop placed on a detected floor" loading="lazy" width="540" height="960"><figcaption>Hoop placed on the floor</figcaption></figure>
+        <figure><img src="images/ar_05_basket.jpg" alt="A basket with confetti and a SWISH message" loading="lazy" width="540" height="960"><figcaption>Swish! Confetti and sound</figcaption></figure>
+        <figure><img src="images/ar_06_last_seconds.jpg" alt="The 60 second challenge timer in its last seconds" loading="lazy" width="540" height="960"><figcaption>60-second challenge</figcaption></figure>
+        <figure><img src="images/ar_08_leaderboard.jpg" alt="The local top-10 leaderboard" loading="lazy" width="540" height="960"><figcaption>Local top-10 leaderboard</figcaption></figure>
+      </div>
+      <p class="note">Screenshots from the Unity Editor's XR Simulation, which simulates a room for testing AR without a phone.</p>
+
+      <h2 style="margin-top:32px">On a laptop or in the browser (virtual court)</h2>
+      <div class="court">
+        <img src="images/court_03_hoop_placed.jpg" alt="The hoop on a wooden virtual court" loading="lazy" width="1280" height="720">
+        <img src="images/court_05_after_first_shot.jpg" alt="A basket on the virtual court with a Nice shot message" loading="lazy" width="1280" height="720">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Features</h2>
+      <div class="cards">
+        <div class="card"><h3>AR plane detection</h3><p>Finds horizontal surfaces, shows a placement ring, tap to place. The hoop is held by an AR anchor and can be repositioned.</p></div>
+        <div class="card"><h3>Real-size physics</h3><p>0.24 m, 0.6 kg ball, 0.45 m rim, realistic bounces, backspin and continuous collision detection.</p></div>
+        <div class="card"><h3>Swipe shooting</h3><p>Flick speed sets the power and a sideways flick aims. Impulse force is clamped, one shot per swipe, with adjustable aim assist.</p></div>
+        <div class="card"><h3>Fair scoring</h3><p>A ball must enter the rim from above and leave below. It scores once; rim and backboard touches never count.</p></div>
+        <div class="card"><h3>60 s challenge</h3><p>Countdown, beeps and buzzer, buzzer beaters, results screen and a local top-10 leaderboard with names.</p></div>
+        <div class="card"><h3>Sound &amp; effects</h3><p>Surface-based 3D impact sounds, swish and chime, confetti, net stretch, vibration and animated buttons.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How to play</h2>
+      <div class="play">
+        <div class="card">
+          <h3>Phone (AR)</h3>
+          <ol>
+            <li>Install the APK and allow the camera.</li>
+            <li>Press <b>FREE PLAY</b> or <b>60s CHALLENGE</b>.</li>
+            <li>Move the phone slowly over the floor until a grid appears, then <b>tap</b> to place the hoop.</li>
+            <li>Step back 2&ndash;3 m and <b>swipe up</b> to shoot.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Browser / laptop</h3>
+          <ol>
+            <li>Press <b>FREE PLAY</b> or <b>60s CHALLENGE</b>.</li>
+            <li>Hold the <b>right mouse button</b> and drag to look; walk with <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>.</li>
+            <li><b>Click</b> the floor to place the hoop.</li>
+            <li><b>Drag the mouse up</b> and let go to shoot. <kbd>Esc</kbd> pauses.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Built with</h2>
+      <table>
+        <tr><th>Engine</th><td>Unity 6 (6000.6), Universal Render Pipeline</td></tr>
+        <tr><th>AR</th><td>AR Foundation 6.6 + Google ARCore XR Plugin 6.6</td></tr>
+        <tr><th>Input &amp; UI</th><td>Input System (touch and mouse through one <code>Pointer</code>), uGUI + TextMeshPro</td></tr>
+        <tr><th>Language</th><td>C#, event-driven scripts (placement, spawning, shooting, scoring, game states, UI, audio)</td></tr>
+        <tr><th>Tests</th><td>Unity Test Framework: 200+ EditMode and 8 PlayMode tests</td></tr>
+        <tr><th>Platforms</th><td>Android 8.0+ (ARCore phones), Windows 10/11, WebGL 2 browsers</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      AR Basketball Shooter &middot; an Immersive Technologies project by <a href="https://github.com/shijin286">@shijin286</a>
+      &middot; <a href="https://github.com/shijin286/ar-basketball-shooter">Source on GitHub</a>
+    </div>
+  </footer>
+</body>
+</html>
