@@ -1,0 +1,55 @@
+10.7s  Screenshot 01_title
+10.8s  Pressed 60s CHALLENGE
+10.8s  Driving the XR Simulation camera
+41.2s  Floor point chosen 1.9 m away
+41.2s  Screenshot 02_scanning_floor
+41.3s  Hoop placed
+41.4s  Player now 3.2 m from the hoop
+42.9s  Screenshot 03_hoop_placed
+43.1s    shot 1: aim assist rim target found, start (rim space) x=0.00 y=-0.83 z=1.78, launch v=0.0 m/s
+43.1s    shot 1: launch velocity 5.32 m/s (fwd 2.34, up 4.78); ideal 5.50 m/s (fwd 2.35, up 4.98); gravity -9.81
+43.4s  Screenshot 04_ball_in_flight
+44.1s    shot 1: HIT 'Pole' (parent 'Stand', layer Default) at 5.5 m/s
+44.2s    shot 1: HIT 'Base' (parent 'Stand', layer Default) at 4.9 m/s
+44.3s  Screenshot 05_basket
+44.5s  Shot 1: score 1, shots 1
+44.5s    shot 2: aim assist rim target found, start (rim space) x=0.00 y=-0.83 z=1.78, launch v=0.0 m/s
+44.5s    shot 2: launch velocity 5.32 m/s (fwd 2.34, up 4.78); ideal 5.50 m/s (fwd 2.35, up 4.98); gravity -9.81
+44.6s    shot 1: HIT 'ARPlane 49A3B92825D97804-EBBD2FBC32B925B6' (parent 'Trackables', layer Default) at 2.7 m/s
+45.0s    shot 1: HIT 'ARPlane 49A3B92825D97804-EBBD2FBC32B925B6' (parent 'Trackables', layer Default) at 2.5 m/s
+45.1s    shot 1: apex 0.36 m above rim, crossed rim height 0.01 m from centre (x=0.00, z=-0.01) at 0.76 s; trigger count 1
+45.5s    shot 2: HIT 'Pole' (parent 'Stand', layer Default) at 5.5 m/s
+45.6s    shot 2: HIT 'Base' (parent 'Stand', layer Default) at 4.9 m/s
+46.0s  Shot 2: score 2, shots 2
+46.0s    shot 3: aim assist rim target found, start (rim space) x=0.00 y=-0.83 z=1.78, launch v=0.0 m/s
+46.0s    shot 3: launch velocity 5.32 m/s (fwd 2.34, up 4.78); ideal 5.50 m/s (fwd 2.35, up 4.98); gravity -9.81
+46.0s    shot 2: HIT 'VirtualFloor' (parent 'BasketballHoop', layer Default) at 2.7 m/s
+46.4s    shot 2: HIT 'VirtualFloor' (parent 'BasketballHoop', layer Default) at 2.5 m/s
+46.5s    shot 2: apex 0.36 m above rim, crossed rim height 0.01 m from centre (x=0.00, z=-0.01) at 0.76 s; trigger count 2
+47.0s    shot 3: HIT 'Pole' (parent 'Stand', layer Default) at 5.5 m/s
+47.1s    shot 3: HIT 'Base' (parent 'Stand', layer Default) at 4.9 m/s
+47.5s  Shot 3: score 3, shots 3
+47.5s    shot 4: aim assist rim target found, start (rim space) x=0.00 y=-0.83 z=1.78, launch v=0.0 m/s
+47.5s    shot 4: launch velocity 5.32 m/s (fwd 2.34, up 4.78); ideal 5.50 m/s (fwd 2.35, up 4.98); gravity -9.81
+47.5s    shot 3: HIT 'VirtualFloor' (parent 'BasketballHoop', layer Default) at 2.7 m/s
+47.9s    shot 3: HIT 'VirtualFloor' (parent 'BasketballHoop', layer Default) at 2.5 m/s
+48.0s    shot 3: apex 0.36 m above rim, crossed rim height 0.01 m from centre (x=0.00, z=-0.01) at 0.76 s; trigger count 3
+48.5s    shot 4: HIT 'Pole' (parent 'Stand', layer Default) at 5.5 m/s
+48.6s    shot 4: HIT 'Base' (parent 'Stand', layer Default) at 4.9 m/s
+49.0s  Shot 4: score 4, shots 4
+49.0s    shot 5: aim assist rim target found, start (rim space) x=0.00 y=-0.83 z=1.78, launch v=0.0 m/s
+49.0s    shot 5: launch velocity 5.32 m/s (fwd 2.34, up 4.78); ideal 5.50 m/s (fwd 2.35, up 4.98); gravity -9.81
+49.0s    shot 4: HIT 'ARPlane 49A3B92825D97804-EBBD2FBC32B925B6' (parent 'Trackables', layer Default) at 2.7 m/s
+49.4s    shot 4: HIT 'ARPlane 49A3B92825D97804-EBBD2FBC32B925B6' (parent 'Trackables', layer Default) at 2.5 m/s
+49.5s    shot 4: apex 0.36 m above rim, crossed rim height 0.01 m from centre (x=0.00, z=-0.01) at 0.76 s; trigger count 4
+50.0s    shot 5: HIT 'Pole' (parent 'Stand', layer Default) at 5.5 m/s
+50.1s    shot 5: HIT 'Base' (parent 'Stand', layer Default) at 4.9 m/s
+50.5s  Shot 5: score 5, shots 5
+50.5s    shot 5: HIT 'ARPlane 49A3B92825D97804-EBBD2FBC32B925B6' (parent 'Trackables', layer Default) at 2.7 m/s
+50.9s    shot 5: HIT 'ARPlane 49A3B92825D97804-EBBD2FBC32B925B6' (parent 'Trackables', layer Default) at 2.5 m/s
+51.0s    shot 5: apex 0.36 m above rim, crossed rim height 0.01 m from centre (x=0.00, z=-0.01) at 0.76 s; trigger count 5
+53.0s  Screenshot 06_last_seconds
+59.0s  Results: score 5, shots 5, accuracy 100%
+59.0s  Screenshot 07_results
+60.1s  Saved to leaderboard, rank 1
+60.1s  Screenshot 08_leaderboard

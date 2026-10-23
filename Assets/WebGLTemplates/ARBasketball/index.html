@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <title>Play {{{ PRODUCT_NAME }}}</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0a0e1f; color: #fff;
+                 font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    #unity-canvas { display: block; width: 100%; height: 100%; background: #0a0e1f; outline: none; touch-action: none; }
+    #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
+               justify-content: center; gap: 16px; padding: 16px; text-align: center; background: #0a0e1f; }
+    #loading h1 { margin: 0; font-size: clamp(24px, 5vw, 40px); color: #ff8c1f; }
+    #bar { width: min(340px, 80vw); height: 10px; border-radius: 5px; background: #222a44; overflow: hidden; }
+    #fill { width: 0; height: 100%; background: #ff8c1f; transition: width .2s; }
+    #hint { max-width: 520px; font-size: 14px; line-height: 1.5; color: #b8bfd6; }
+    #back { position: fixed; left: 12px; bottom: 12px; padding: 6px 10px; border-radius: 6px; font-size: 13px;
+            color: #fff; text-decoration: none; background: rgba(0, 0, 0, .45); }
+    @media (max-width: 760px) { #back { display: none; } }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" tabindex="-1"></canvas>
+  <a id="back" href="../">&larr; Project page</a>
+  <div id="loading">
+    <h1>{{{ PRODUCT_NAME }}}</h1>
+    <div id="bar"><div id="fill"></div></div>
+    <div id="hint">
+      Loading the game&hellip;<br>
+      <b>Right mouse button</b> + drag: look around &nbsp;&bull;&nbsp; <b>W A S D</b>: walk<br>
+      <b>Click</b> the floor: place the hoop &nbsp;&bull;&nbsp; <b>Drag up</b> and let go: shoot<br>
+      On a phone: tap to place, swipe up to shoot.
+    </div>
+  </div>
+  <script>
+    const canvas = document.getElementById("unity-canvas");
+    const hint = document.getElementById("hint");
+    canvas.addEventListener("contextmenu", (e) => e.preventDefault()); // the right mouse button looks around
+
+    const buildUrl = "Build";
+    const config = {
+      arguments: [],
+#if PROGRESSIVE_ASSET_LOADING
+      primaryDataUrls: {{{ JSON.stringify(PRIMARY_DATA_FILES) }}},
+      secondaryDataUrls: {{{ JSON.stringify(SECONDARY_DATA_FILES) }}},
+#else
+      dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+#endif
+      frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_WASM
+      codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+      symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
+#endif
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+      productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+      productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      autoSyncPersistentDataPath: true, // the leaderboard is remembered next time
+    };
+
+    const script = document.createElement("script");
+    script.src = buildUrl + "/{{{ LOADER_FILENAME }}}";
+    script.onload = () => {
+      createUnityInstance(canvas, config, (progress) => {
+        document.getElementById("fill").style.width = (100 * progress) + "%";
+      }).then(() => {
+        document.getElementById("loading").remove();
+        canvas.focus();
+      }).catch((message) => {
+        hint.textContent = "Sorry, the game could not start in this browser: " + message;
+      });
+    };
+    script.onerror = () => { hint.textContent = "Sorry, the game files could not be loaded."; };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
