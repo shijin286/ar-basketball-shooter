@@ -6,6 +6,7 @@
 /[Uu]ser[Ss]ettings/
 /[Mm]emoryCaptures/
 /[Rr]ecordings/
+/[Dd]ata/
 /.utmp/
 
 # Build outputs - the APK and Windows app are attached to GitHub Releases,
